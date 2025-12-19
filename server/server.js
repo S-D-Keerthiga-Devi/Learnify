@@ -28,6 +28,24 @@ app.use(cors({
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Root route - API information
+app.get('/', (req, res) => {
+    res.json({
+        success: true,
+        message: 'Welcome to Learnify API',
+        version: '1.0.0',
+        endpoints: {
+            health: '/health',
+            courses: '/api/courses',
+            enrollments: '/api/enrollments',
+            progress: '/api/progress',
+            users: '/api/users'
+        },
+        documentation: 'https://github.com/S-D-Keerthiga-Devi',
+        timestamp: new Date().toISOString(),
+    });
+});
+
 // Health check route
 app.get('/health', (req, res) => {
     res.json({
